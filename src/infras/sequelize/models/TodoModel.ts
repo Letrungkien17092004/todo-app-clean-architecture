@@ -6,7 +6,7 @@ export default class TodoModel extends Model<InferAttributes<TodoModel>, InferCr
     declare id: number | null;
     declare title: string;
     declare description: string | null;
-    declare completed: boolean
+    declare completed: boolean | null
 }
 
 TodoModel.init(
@@ -29,7 +29,7 @@ TodoModel.init(
 
         completed: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: false,
         }
     },
     {
