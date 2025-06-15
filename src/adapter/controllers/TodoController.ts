@@ -7,6 +7,10 @@ export default class TodoController {
 
     constructor(todoUsecase: TodoUsecase) {
         this._todoUsecase = todoUsecase;
+        this.createTodo = this.createTodo.bind(this);
+        this.updateTodo = this.updateTodo.bind(this);
+        this.deleteById = this.deleteById.bind(this);
+        this.getAllTodos = this.getAllTodos.bind(this);
     }
 
     /**
@@ -20,7 +24,7 @@ export default class TodoController {
             if (!title) {
                 throw new Error("Invalid input");
             }
-            const todo = await this._todoUsecase.createTodo(TodoMapper.toInput(req));
+            const todo = await this._todoUsecase.createTodo(TodoMapper.ReqBodytoInput(req));
             res.status(200).json(TodoMapper.toOutput(todo));
 
         } catch (error) {
@@ -45,7 +49,7 @@ export default class TodoController {
             if (!isValid) {
                 throw new Error("Invalid input")
             }
-            const todo = await this._todoUsecase.updateTodo(TodoMapper.toInput(req));
+            const todo = await this._todoUsecase.updateTodo(id, TodoMapper.ReqBodytoInput(req));
 
             if (todo) {
                 res.status(200).json(TodoMapper.toOutput(todo));
@@ -99,6 +103,7 @@ export default class TodoController {
             })
 
         } catch (error) {
+            console.log(error)
             res.status(500).json({
                 message: "Error!"
             })

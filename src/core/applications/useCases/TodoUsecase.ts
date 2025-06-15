@@ -13,11 +13,11 @@ export class TodoUsecase implements ITodoUsecase {
         return await this._todoRepo.createTodo(newTodo);
     }
 
-    async updateTodo(todo: Todo): Promise<Todo | null> {
-        return await this._todoRepo.updateTodo(todo);
+    async updateTodo(id: number, todo: Todo): Promise<Todo | null> {
+        return await this._todoRepo.updateTodo(id, todo);
     }
 
-    async deleteById(id: string): Promise<void> {
+    async deleteById(id: number): Promise<boolean> {
         return await this._todoRepo.deleteTodo(id);
     }
 

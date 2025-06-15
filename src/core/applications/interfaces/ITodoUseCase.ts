@@ -3,8 +3,8 @@ import ITodoRepository from "../repositories/ITodoRepository.js";
 
 export default interface ITodoUsecase {
     createTodo(newTodo: Todo): Promise<Todo>;
-    updateTodo(todo: Todo): Promise<Todo | null>;
-    deleteById(id: string): Promise<void>;
+    updateTodo(id: number, todo: Todo): Promise<Todo | null>;
+    deleteById(id: number): Promise<boolean>;
     getAllTodos(): Promise<Todo[]>;
     
 }
