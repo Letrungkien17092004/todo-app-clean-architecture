@@ -4,9 +4,9 @@ export default class Todo {
     private _id: number | null;
     private _title: string;
     private _description: string | null;
-    private _completed: boolean | null;
+    private _completed: boolean;
     
-    constructor(options: {id: number | null, title: string, description: string | null, completed: boolean | null}) {
+    constructor(options: {id: number | null, title: string, description: string | null, completed: boolean}) {
         this._id = options.id;
         this._title = options.title;
         this._description = options.description;
@@ -25,7 +25,7 @@ export default class Todo {
         return this._description;
     }
 
-    public get completed(): boolean | null {
+    public get completed(): boolean {
         return this._completed;
     }
 }
