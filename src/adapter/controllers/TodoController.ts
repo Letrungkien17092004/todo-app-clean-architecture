@@ -36,6 +36,26 @@ export default class TodoController {
     }
 
     /**
+     * Find all todo controller
+     * @param _ 
+     * @param res 
+     */
+    async getAllTodos(_: Request, res: Response): Promise<void> {
+        try {
+            const todos = await this._todoUsecase.getAllTodos();
+            res.status(200).json({
+                todos: todos.map(t => TodoMapper.toOutput(t))
+            })
+
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({
+                message: "Error!"
+            })
+        }
+    }
+
+    /**
      * Update todo controller
      * @param req 
      * @param res 
@@ -68,8 +88,8 @@ export default class TodoController {
 
     /**
      * Delete todo by id controller
-     * @param req 
-     * @param res 
+     * @param req
+     * @param res
      */
     async deleteById(req: Request, res: Response): Promise<void> {
         try {
@@ -87,26 +107,6 @@ export default class TodoController {
             res.status(500).json({
                 message: "Error!"
             });
-        }
-    }
-
-    /**
-     * Find all todo controller
-     * @param _ 
-     * @param res 
-     */
-    async getAllTodos(_: Request, res: Response): Promise<void> {
-        try {
-            const todos = await this._todoUsecase.getAllTodos();
-            res.status(200).json({
-                todos: todos.map(t => TodoMapper.toOutput(t))
-            })
-
-        } catch (error) {
-            console.log(error)
-            res.status(500).json({
-                message: "Error!"
-            })
         }
     }
 }

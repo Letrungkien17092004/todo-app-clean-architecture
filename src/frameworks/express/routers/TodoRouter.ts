@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { TodoUsecase } from "src/core/applications/useCases/TodoUsecase.js";
-import { TodoRepoPostgres } from "src/infras/sequelize/index.js";
+import TodoRepoPostgres from "src/infras/prisma/TodoRepoPostgres.js";
 import TodoController from '../../../adapter/controllers/TodoController.js';
 
 const todoRepo = new TodoRepoPostgres()
